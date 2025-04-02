@@ -16,26 +16,25 @@ body {
     min-height: 100vh;
 }
 
-/* Header Styling */
+/* Header */
 header {
     background: #2c3e50;
     padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-/* Logo and Name */
+/* Logo */
 .logo-container {
     display: flex;
     align-items: center;
 }
-
 .logo-container img {
     width: 50px;
     height: 50px;
 }
-
 .logo-container h1 {
     font-size: 20px;
     font-weight: bold;
@@ -43,7 +42,7 @@ header {
     margin-left: 10px;
 }
 
-/* Dark Mode Toggle Button */
+/* Dark Mode Button */
 #darkModeToggle {
     background: none;
     border: none;
@@ -52,45 +51,28 @@ header {
     color: white;
     transition: all 0.3s ease;
 }
-
-/* Button Animation when toggling */
-#darkModeToggle {
-    position: relative;
-    display: inline-block;
+#darkModeToggle::before {
+    content: "🌙"; /* Default mode */
+}
+.dark-mode #darkModeToggle::before {
+    content: "🌞"; /* Dark mode active */
 }
 
-#darkModeToggle:before {
-    content: "🌙";
-    transition: transform 0.4s ease-in-out;
-}
-
-#darkModeToggle.dark-mode:before {
-    content: "🌞";
-    transform: scale(1.2);
-}
-
-/* Container - Grid Layout */
+/* Grid Container */
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 15px;
     padding: 40px;
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
-    opacity: 0;
     animation: fadeIn 1s ease-in forwards;
 }
 
 /* Fade-in animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Box Styling */
@@ -103,24 +85,20 @@ header {
     border-radius: 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
+    text-align: center;
 }
 
-/* Icon Styling */
+/* Icon & Link */
 .box i {
     font-size: 30px;
     color: #2c3e50;
     margin-bottom: 10px;
-    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
-
-/* Link Styling */
 .box a {
     text-decoration: none;
     color: #2c3e50;
@@ -135,30 +113,8 @@ header {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     background: #2c3e50;
 }
-
-.box:hover i {
+.box:hover i, .box:hover a {
     color: white;
-    transform: scale(1.1);
-}
-
-.box:hover a {
-    color: white;
-}
-
-/* Ripple Effect */
-.box a::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: -100%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.4s ease-in-out;
-}
-
-.box:hover a::after {
-    left: 0;
 }
 
 /* Footer */
@@ -169,29 +125,29 @@ footer {
     padding: 15px;
     font-size: 14px;
     margin-top: auto;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    position: relative;
 }
 
-/* Dark Mode Styles */
+/* Dark Mode */
 .dark-mode {
     background: #1a1a1a;
     color: white;
 }
-
 .dark-mode .box {
     background: rgba(50, 50, 50, 0.9);
-    backdrop-filter: blur(10px);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
-
 .dark-mode .box i, .dark-mode .box a {
     color: white;
 }
 
-/* Dark Mode Toggle Emoji */
-.dark-mode #darkModeToggle {
-    color: #f39c12; /* Gold color for sun (active dark mode) */
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container { grid-template-columns: repeat(2, 1fr); padding: 20px; }
+    .box { height: 120px; }
+    header { flex-direction: column; text-align: center; padding: 10px; }
 }
-
+@media (max-width: 480px) {
+    .container { grid-template-columns: repeat(1, 1fr); }
+    .box { width: 90%; height: 110px; margin: 10px auto; }
+}
