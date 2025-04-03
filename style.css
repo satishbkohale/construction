@@ -23,13 +23,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;  /* Ensures everything stays in one row */
 }
 
-/* Logo */
+/* Logo & Title */
 .logo-container {
     display: flex;
     align-items: center;
+    flex-shrink: 0;  /* Prevents shrinking on small screens */
 }
 .logo-container img {
     width: 50px;
@@ -40,9 +41,10 @@ header {
     font-weight: bold;
     color: white;
     margin-left: 10px;
+    white-space: nowrap;  /* Prevents text from wrapping */
 }
 
-/* Dark Mode Button */
+/* Dark Mode Toggle */
 #darkModeToggle {
     background: none;
     border: none;
@@ -50,12 +52,30 @@ header {
     font-size: 25px;
     color: white;
     transition: all 0.3s ease;
+    margin-left: auto;  /* Pushes toggle to the right */
 }
 #darkModeToggle::before {
-    content: "🌙"; /* Default mode */
+    content: "🌙";  /* Default mode */
 }
 .dark-mode #darkModeToggle::before {
-    content: "🌞"; /* Dark mode active */
+    content: "🌞";  /* Dark mode active */
+}
+
+/* Responsive Fix for Small Screens */
+@media (max-width: 480px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+    }
+    .logo-container h1 {
+        font-size: 18px;
+    }
+    #darkModeToggle {
+        font-size: 22px;
+    }
 }
 
 /* Grid Container */
