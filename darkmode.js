@@ -1,12 +1,23 @@
-document.getElementById("darkModeToggle").addEventListener("click", function() {
-    // Toggle the 'dark-mode' class on the body element
-    document.body.classList.toggle("dark-mode");
+document.addEventListener("DOMContentLoaded", function () {
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const body = document.body;
 
-    // Add a class to the button to trigger the transition animation
-    const toggleButton = document.getElementById("darkModeToggle");
-    if (document.body.classList.contains("dark-mode")) {
-        toggleButton.classList.add("dark-mode");
-    } else {
-        toggleButton.classList.remove("dark-mode");
+    // Check if dark mode is saved in localStorage
+    if (localStorage.getItem("darkMode") === "enabled") {
+        body.classList.add("dark-mode");
+        darkModeToggle.classList.add("dark-mode");
     }
+
+    // Toggle dark mode on button click
+    darkModeToggle.addEventListener("click", function () {
+        body.classList.toggle("dark-mode");
+        darkModeToggle.classList.toggle("dark-mode");
+
+        // Save dark mode state in localStorage
+        if (body.classList.contains("dark-mode")) {
+            localStorage.setItem("darkMode", "enabled");
+        } else {
+            localStorage.setItem("darkMode", "disabled");
+        }
+    });
 });
