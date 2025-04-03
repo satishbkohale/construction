@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Body Styling */
+/* Body */
 body {
     background: linear-gradient(to right, #f8f9fa, #e3eaf3);
     text-align: center;
@@ -23,14 +23,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap;  /* Ensures everything stays in one row */
 }
 
 /* Logo & Title */
 .logo-container {
     display: flex;
     align-items: center;
-    flex-shrink: 0;  /* Prevents shrinking on small screens */
 }
 .logo-container img {
     width: 50px;
@@ -41,7 +39,7 @@ header {
     font-weight: bold;
     color: white;
     margin-left: 10px;
-    white-space: nowrap;  /* Prevents text from wrapping */
+    white-space: nowrap;
 }
 
 /* Dark Mode Toggle */
@@ -52,7 +50,7 @@ header {
     font-size: 25px;
     color: white;
     transition: all 0.3s ease;
-    margin-left: auto;  /* Pushes toggle to the right */
+    margin-left: auto;
 }
 #darkModeToggle::before {
     content: "🌙";  /* Default mode */
@@ -61,30 +59,13 @@ header {
     content: "🌞";  /* Dark mode active */
 }
 
-/* Responsive Fix for Small Screens */
-@media (max-width: 480px) {
-    header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px;
-    }
-    .logo-container h1 {
-        font-size: 18px;
-    }
-    #darkModeToggle {
-        font-size: 22px;
-    }
-}
-
 /* Grid Container */
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(5, 1fr); /* 5 cards per row on laptop */
     gap: 15px;
     padding: 40px;
-    max-width: 900px;
+    max-width: 1100px;
     margin: auto;
     animation: fadeIn 1s ease-in forwards;
 }
@@ -109,7 +90,6 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
 }
 
 /* Icon & Link */
@@ -162,12 +142,33 @@ footer {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .container { grid-template-columns: repeat(2, 1fr); padding: 20px; }
-    .box { height: 120px; }
-    header { flex-direction: column; text-align: center; padding: 10px; }
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr); /* 3 per row on tablets */
+    }
 }
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile */
+        padding: 20px;
+    }
+    header {
+        padding: 10px;
+    }
+    .logo-container h1 {
+        font-size: 18px;
+    }
+    #darkModeToggle {
+        font-size: 20px;
+    }
+}
+
 @media (max-width: 480px) {
-    .container { grid-template-columns: repeat(1, 1fr); }
-    .box { width: 90%; height: 110px; margin: 10px auto; }
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* Still 2 per row */
+    }
+    .box {
+        height: 110px;
+    }
 }
