@@ -1,4 +1,3 @@
-<script>
     // Disable right-click context menu
     document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
@@ -21,4 +20,3 @@
         };
         console.log('%c', devtoolsTrap);
     }, 2000);
-</script>
